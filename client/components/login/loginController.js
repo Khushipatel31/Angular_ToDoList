@@ -1,9 +1,11 @@
 function LoginController($scope, $location) {
-    $scope.loginData = {};
+    $scope.username = "";
+	$scope.password = "";
+	$scope.errorMsg = "";
 
     $scope.login = function () {
         // Implement login logic here
-        console.log('Logging in with:', $scope.loginData);
+        console.log('Logging in with:', $scope.password,$scope.username);
     };
 
     $scope.toSignup = function () {
