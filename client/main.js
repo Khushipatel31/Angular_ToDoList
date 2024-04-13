@@ -1,20 +1,38 @@
-import angular from "angular";
-import "angular-route";
-const appModule = angular
-    .module("toDoList", ["ngRoute"])
-    .config(config);
+import angular from 'angular';
+import 'angular-route';
 
-config.$inject = ["$routeProvider"];
-function config($routeProvider) {
-    // $routeProvider
-    // .when("/", { templateUrl: "/routes/login/login.html", controller: "loginController" })
-    // .when("/signup", { templateUrl: "/routes/signup/signup.html", controller: "signupController" })
-    // .when("/home", { templateUrl: "/routes/home/home.html" })
-    // .when("/projects", { templateUrl: "/routes/projects/projects.html" })
-    // .when("/error", { templateUrl: "/routes/error/error.html" })
-    // .otherwise("/error");
-}
+import loginCtrl from './components/login/loginController';
+import registerCtrl from './components/register/registerController';
+// import dashboardCtrl from './components/dashboard/dashboardController';
 
-appModule.controller("m", function ( $scope) {
-    $scope.name="abd";
-})
+const app = angular.module('abc', ["ngRoute"]);
+app.config(config);
+
+config.$inject = ["$routeProvider", "$locationProvider"];
+function config($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
+    $routeProvider
+        .when('/', {
+            redirectTo: '/login'
+        })
+        .when('/login', {
+            templateUrl: 'components/login/login.html',
+            controller: 'LoginController',
+        })
+        .when('/register', {
+            templateUrl: 'components/register/register.html',
+            controller: 'RegisterController',
+        })
+        // .when('/dashboard', {
+        //     templateUrl: 'components/dashboard/dashboard.html',
+        //     controller: 'dashboardController',
+        // })
+};
+
+app.controller('LoginController', loginCtrl);
+app.controller('RegisterController', registerCtrl);
+// app.controller('DashboardController', dashboardCtrl);
+
+loginCtrl.$inject = ["$scope", "$location"];
+registerCtrl.$inject = ["$scope", "$location"];
+// export default app.name;
