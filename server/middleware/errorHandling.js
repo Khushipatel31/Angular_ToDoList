@@ -2,8 +2,6 @@ const { CustomHttpError } = require("../utils/customError");
 
 function errorHandler(err, req, res, next) {
 
-    console.log(err);
-
     err.httpStatusCode = err.httpStatusCode || 500;
     err.message = err.message || "Internal error";
 
@@ -15,17 +13,6 @@ function errorHandler(err, req, res, next) {
     //mongoose duplicate key //when same email registers
     if (err.code == 11000) {
         const message = `Duplicate ${Object.keys(err.keyValue)} error `;
-        err = new CustomHttpError(400, message);
-    }
-    //wrong token error
-    if (err.name == "JsonWebTokenError") {
-        const message = `JSON web token is invalid try again `;
-        err = new CustomHttpError(400, message);
-    }
-
-    //jwt expire 
-    if (err.name == "TokenExpiredError") {
-        const message = `JSON web token is expired try again `;
         err = new CustomHttpError(400, message);
     }
 

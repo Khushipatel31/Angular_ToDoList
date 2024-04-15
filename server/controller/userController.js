@@ -7,20 +7,16 @@ const login = catchAsyncErrors(async (req, res, next) => {
     if (!data.password || !data.email) {
         return next(new CustomHttpError(400, "Please enter all data"));
     }
-    await User.findOne(data)
-        .then(response => {
-            if (response != null)
-                res.status(200).json({
-                    success: true,
-                    message: `login successfully`
-                })
-            else
-                return next(new CustomHttpError(400, "Invalid credential"));
-        })
-        .catch(err => {
-            return next(new CustomHttpError(400, err));
-        })
-})
+    const user = await User.findOne(data);
+    if (user) {
+        res.status(200).json({
+            success: true,
+            message: `login successfully`,
+        });
+    } else {
+        return next(new CustomHttpError(400, "Invalid credential"));
+    }
+});
 
 const register = catchAsyncErrors(async (req, res, next) => {
     const { username, email, password } = req.body;
@@ -28,7 +24,6 @@ const register = catchAsyncErrors(async (req, res, next) => {
         return next(new CustomHttpError(400, "Please enter all data"));
     }
     const user = await User.findOne({ email });
-    console.log(user);
 
     if (user) {
         return next(new CustomHttpError(401, "User already exists"));
@@ -42,8 +37,32 @@ const register = catchAsyncErrors(async (req, res, next) => {
     }
     res.status(200).json({
         success: true,
-        message: `user created successfully`
-    })
+        message: `user created successfully`,
+    });
+});
+
+const addNewTask=catchAsyncErrors(async(req,res,next)=>{
+    const{ task,userId}=req.body;
+    if(!task){
+        return next(new CustomHttpError(400,"Please enter Task"));
+    }
+    const user=await  User.findById(userId);
+    console.log(user)
+    if(!user){
+        return next(new CustomHttpError(404,"User not found"));
+    }else{
+        const newTask = {
+            task: task
+        };
+
+        user.tasks.push(newTask);
+        await user.save();
+    }
+    res.status(200).json({
+        success: true,
+        message: `task added successfully`,
+    });
 })
 
-module.exports = { login, register };
+
+module.exports = { login, register,addNewTask };

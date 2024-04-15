@@ -1,19 +1,11 @@
 class CustomError extends Error {
     httpStatusCode;
-    timestamp;
-    documentationUrl;
     message;
 
-    constructor(httpStatusCode, message, documentationUrl) {
+    constructor(httpStatusCode, message) {
         super(message);
-        // initializing the class properties
         this.httpStatusCode = httpStatusCode;
-        this.timestamp = new Date().toISOString();
         this.message = message;
-        this.documentationUrl = documentationUrl;
-        // attaching a call stack to the current class,
-        // preventing the constructor call to appear in the stack trace
-        Error.captureStackTrace(this, this.constructor);
     }
 }
 

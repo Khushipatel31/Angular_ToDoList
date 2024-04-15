@@ -20,6 +20,18 @@ const userSchema = new mongoose.Schema({
         minLength: [8, "Password must be greater than 8 characters"],
         select: false, //whenever find method is called
     },
+    tasks: [
+        {
+            task: {
+                type: String,
+                required: true
+            },
+            status: {
+                type: Boolean,
+                default:true,
+            },
+        }
+    ],
     createdAt: {
         type: Date,
         default: Date.now()

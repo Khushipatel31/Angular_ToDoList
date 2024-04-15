@@ -8,7 +8,7 @@ import registerCtrl from './components/register/registerController';
 const app = angular.module('abc', ["ngRoute"]);
 app.config(config);
 
-config.$inject = ["$routeProvider", "$locationProvider"];
+config.$inject = ["$routeProvider", "$locationProvider","$httpProvider"];
 function config($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider
@@ -33,6 +33,6 @@ app.controller('LoginController', loginCtrl);
 app.controller('RegisterController', registerCtrl);
 // app.controller('DashboardController', dashboardCtrl);
 
-loginCtrl.$inject = ["$scope", "$location"];
-registerCtrl.$inject = ["$scope", "$location"];
+loginCtrl.$inject = ["$scope", "$location","$http"];
+registerCtrl.$inject = ["$scope", "$location","$http"];
 // export default app.name;
