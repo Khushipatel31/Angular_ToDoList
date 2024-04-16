@@ -1,9 +1,8 @@
 import angular from 'angular';
 import 'angular-route';
-
 import loginCtrl from './components/login/loginController';
 import registerCtrl from './components/register/registerController';
-// import dashboardCtrl from './components/dashboard/dashboardController';
+import dashboardCtrl from './components/dashboard/dashboardController';
 
 const app = angular.module('abc', ["ngRoute"]);
 app.config(config);
@@ -23,16 +22,16 @@ function config($routeProvider, $locationProvider) {
             templateUrl: 'components/register/register.html',
             controller: 'RegisterController',
         })
-        // .when('/dashboard', {
-        //     templateUrl: 'components/dashboard/dashboard.html',
-        //     controller: 'dashboardController',
-        // })
+        .when('/tasks', {
+            templateUrl: 'components/dashboard/dashboard.html',
+            controller: 'DashboardController',
+        })
 };
 
 app.controller('LoginController', loginCtrl);
 app.controller('RegisterController', registerCtrl);
-// app.controller('DashboardController', dashboardCtrl);
+app.controller('DashboardController', dashboardCtrl);
 
 loginCtrl.$inject = ["$scope", "$location","$http"];
 registerCtrl.$inject = ["$scope", "$location","$http"];
-// export default app.name;
+dashboardCtrl.$inject = ["$scope", "$location","$http"];

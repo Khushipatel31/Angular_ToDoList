@@ -2,12 +2,14 @@ const express = require("express");
 const router = express.Router();
 const userController =require("../controller/userController")
 
-// Home page route.
 router.post("/login", userController.login);
 
 router.post("/register", userController.register);
 
 router.post("/task/new",userController.addNewTask)
 
-console.log("route.js");
+router.post("/tasks",userController.getTasks)
+
+router.post("/task/update",userController.updateTask)
+
 module.exports = router;

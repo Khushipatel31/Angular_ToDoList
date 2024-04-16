@@ -12,8 +12,8 @@ function RegisterController($scope, $location, $http) {
             return false; 
         }
 
-        if (!$scope.password || $scope.password.length < 9) {
-            $scope.errorMsg = "Password must be at least 9 characters long.";
+        if (!$scope.password || $scope.password.length < 8) {
+            $scope.errorMsg = "Password must be at least 8 characters long.";
             return false; 
         }
 
@@ -21,7 +21,6 @@ function RegisterController($scope, $location, $http) {
             $scope.errorMsg = "Invalid email format.";
             return false; 
         }
-
         return true; 
     };
 
