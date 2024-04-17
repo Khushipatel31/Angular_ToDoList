@@ -7,8 +7,8 @@ import dashboardCtrl from './components/dashboard/dashboardController';
 const app = angular.module('abc', ["ngRoute"]);
 app.config(config);
 
-config.$inject = ["$routeProvider", "$locationProvider","$httpProvider"];
-function config($routeProvider, $locationProvider) {
+config.$inject = ["$routeProvider", "$locationProvider","$httpProvider","$filterProvider"];
+function config($routeProvider, $locationProvider, $httpProvider,$filterProvider) { 
     $locationProvider.html5Mode(true);
     $routeProvider
         .when('/', {
@@ -34,4 +34,4 @@ app.controller('DashboardController', dashboardCtrl);
 
 loginCtrl.$inject = ["$scope", "$location","$http"];
 registerCtrl.$inject = ["$scope", "$location","$http"];
-dashboardCtrl.$inject = ["$scope", "$location","$http"];
+dashboardCtrl.$inject = ["$scope", "$location","$http","$filter"];

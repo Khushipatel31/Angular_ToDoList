@@ -56,13 +56,14 @@ const addNewTask = catchAsyncErrors(async (req, res, next) => {
         const newTask = {
             task: task,
         };
-
         user.tasks.push(newTask);
         await user.save();
     }
+    const tasks=user.tasks;
     res.status(200).json({
         success: true,
-        message: `task added successfully`,
+        message: `Task added successfully`,
+        tasks
     });
 });
 
@@ -81,20 +82,29 @@ const getTasks = catchAsyncErrors(async (req, res, next) => {
 })
 
 const updateTask = catchAsyncErrors(async (req, res, next) => {
-    const { userId, taskId, task, status } = req.body;
-    if (!userId || !taskId || !task || !status) {
+    const { userId, _id, task, status } = req.body;
+    if (!userId || !_id || !status) {
         return next(new CustomHttpError(400,"Bad Request"));
     }
     const user = await User.findById(userId);
-    console.log(user);
     const tasks=user.tasks;
     tasks.map((ele)=>{
-        if(ele._id==taskId){
-            ele.task=task,
-            ele.status=status
+        if(ele._id==_id){
+            if(status=="false"){
+                ele.status=status;
+            }else{
+                ele.task=task;
+                ele.status=status;
+
+            }
         }
     })
     user.save();
+    res.status(200).json({
+        success: true,
+        tasks,
+        user
+    });
 })
 
 module.exports = { login, register, addNewTask, getTasks, updateTask };
