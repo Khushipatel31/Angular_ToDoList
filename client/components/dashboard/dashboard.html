@@ -9,14 +9,15 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: #a8e6ff56;
         }
         .modal-content {
-            background-color: #fefefe;
+            background-color: #0f172a;
             margin: 15% auto;
             padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
+            border: 1px solid #141313;
+            width: 50%;
+            box-shadow: 5px 10px 8px #141313;
         }
         .close {
             color: #aaa;
@@ -26,12 +27,37 @@
         }
         .close:hover,
         .close:focus {
-            color: black;
+            color: #34aae0;
             text-decoration: none;
             cursor: pointer;
         }
+
+        .scrollbar{
+            overflow-y: scroll;
+        }
+
+        .scrollbar::-webkit-scrollbar {
+            width: 5px;
+          }
+          
+          /* Track */
+          .scrollbar::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey; 
+            border-radius: 10px;
+          }
+           
+          /* Handle */
+          .scrollbar::-webkit-scrollbar-thumb {
+            background: #34aae0; 
+            border-radius: 10px;
+          }
+          
+          /* Handle on hover */
+          .scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #1e8fc3; 
+          }
     </style>
-    <div class="bg-[#0f172a] h-screen ">
+    <div class="bg-[#0f172a] h-screen overflow-hidden ">
 
         <div class="flex shadow-lg shadow-black h-32 items-center ">
             <div class="w-1/3  m-5 space-y-4">
@@ -40,25 +66,25 @@
             </div>
 
             <div class="w-1/3">
-                <h1 class="text-6xl font-bold text-center text-[#34aae0]">To do list</h1>
+                <h1 class="text-5xl font-bold text-center text-[#34aae0]">To do list</h1>
             </div>
         </div>
 
         <div>
-            <div class="flex m-4 justify-center mt-24">
-                <input class="bg-[#34aae0] p-5 rounded-lg w-2/6 text-black text-lg text-bold m-3" type="text"
+            <div class="flex m-4 justify-center mt-24 w-full">
+                <input class="bg-[#34aae0] p-3 rounded-lg w-3/12 text-black text-lg text-bold m-3" type="text"
                     placeholder="Add task..." ng-model="newTask" />
                 <button
-                    class="bg-[#34aae0] p-5 text-xl font-bold w-1/6 rounded-lg m-3 hover:bg-[#1e8fc3] hover:shadow-md hover:shadow-black hover:text-white"
+                    class="bg-[#34aae0] p-3 text-xl font-bold w-1/12 rounded-lg m-3 hover:bg-[#1e8fc3] hover:shadow-md hover:shadow-black hover:text-white"
                     ng-click="addTask()">
                     ADD
                 </button>
             </div>
 
-            <div class="flex justify-center mt-24 ">
-                <ul class="divide-y divide-slate-500  rounded-lg  w-4/6 border-2 border-sky-500 items-center m-4">
+            <div class="flex justify-center mt-16">
+                <ul class="divide-y divide-slate-500  rounded-lg  w-7/12 border-2 border-sky-500 items-center m-4 max-h-80  scrollbar">
                     <li class="flex hover:bg-[#1e8fc3]" ng-repeat="t in tasks">
-                        <div class="text-white w-full p-5 text-xl">{{t.task}}</div>
+                        <div class="text-white w-full p-4 text-xl">{{t.task}}</div>
                         <div class="w-1/12 flex justify-center items-center ">
                             <a  ng-click="openModal(t)">
                                 <svg class="rounded-full bg-[#cccccc] hover:bg-red-700 p-1 hover:shadow-black hover:shadow-md"
@@ -88,12 +114,12 @@
     </div>
 
   <!-- Modal -->
-  <div id="editTaskModal" class="modal">
-    <div class="modal-content">
+  <div id="editTaskModal" class="modal w-2/5 ">
+    <div class="modal-content  ">
         <span class="close" ng-click="closeModal()">&times;</span>
-        <h2>Edit Task</h2>
-        <input ng-model="taskk" type="text" placeholder="Edit task..." />
-        <button ng-click="saveEditedTask()">Save Changes</button>
+        <h2 class="text-[#34aae0] text-2xl font-semibold py-2">Edit Task : </h2>
+        <input ng-model="taskk" class="p-2 w-3/5 border border-gray-300 rounded-lg" type="text " placeholder="Edit task..." />
+        <button ng-click="saveEditedTask()" class="bg-[#34aae0] p-2  text-xl font-bold rounded-lg mx-2  my-3 hover:bg-[#1e8fc3] hover:shadow-md hover:shadow-black hover:text-white">Save Changes</button>
     </div>
 </div>
     <!-- <script>
