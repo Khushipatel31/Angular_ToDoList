@@ -1,60 +1,34 @@
-<div
-  class="w-full h-screen flex items-center justify-center bg-[#dff6ff]"
->
-  <div
-    class="tab-content max-w-md w-full mx-auto p-8 bg-[#0f172a] rounded-lg shadow-lg"
-  >
-    <h2 class="text-2xl font-bold mb-4 text-[#34aae0]">Register</h2>
+<div class="w-full h-screen flex items-center justify-center  bg-[#0f172a]">
+  <div class="tab-content max-w-md w-full mx-auto p-8 bg-[#34aae0] rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold mb-4 text-[#0f172a]">Register</h2>
     <form ng-submit="register()" class="space-y-4">
       <div>
-        <label for="username" class="block font-medium text-[#34aae0]">Name:</label>
-        <input
-        ng-model="username"
-          type="text"
-          id="username"
-          name="username"
+        <label for="username" class="block font-medium text-[#0f172a]">Name:</label>
+        <input ng-model="username" type="text" id="username" name="username"
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1e8fc3]"
-          required
-        />
+          required />
       </div>
       <div>
-        <label for="email" class="block font-medium text-[#34aae0]">Email:</label>
-        <input
-        ng-model="email"
-          type="email"
-          id="email"
-          name="email"
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1e8fc3]"
-          required
-        />
+        <label for="email" class="block font-medium text-[#0f172a]">Email:</label>
+        <input ng-model="email" type="email" id="email" name="email"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#0f172a]"
+          required />
       </div>
       <div>
-        <label for="password" class="block font-medium text-[#34aae0]">Password:</label>
-        <input
-        ng-model="password"
-          type="password"
-          id="password"
-          name="password"
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1e8fc3]"
-          required
-        />
+        <label for="password" class="block font-medium text-[#0f172a]">Password:</label>
+        <input ng-model="password" type="password" id="password" name="password"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#0f172a]"
+          required />
       </div>
-      <button
-        type="submit"
-        class="w-full bg-[#34aae0] text-white font-semibold py-2 rounded-lg focus:bg-[#1e8fc3]"
-      >
+      <button type="submit" class="w-full bg-[#0f172a] text-white font-semibold py-2 rounded-lg focus:bg-[#0f172a]">
         Register
       </button>
     </form>
-    <p class="mt-4 text-[#34aae0]">
+    <h1 class="text-[#0f172a] text-xl text-center">{{loading}}</h1>
+    <p class="mt-4 text-[#0f172a]">
       Already have an account?
-      <a
-      href="#"
-      ng-click="toLogin()"
-      class="text-red-300 font-medium hover:underline"
-      >Login here</a
-      >
+      <a href="#" ng-click="toLogin()" class="text-[#0f172a] font-medium hover:underline">Login here</a>
     </p>
-    <p class="text-red-500">{{errorMsg}}</p>
+    <p class="text-red-600 text-bold text-center">{{errorMsg}}</p>
   </div>
 </div>

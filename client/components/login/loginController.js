@@ -2,7 +2,9 @@ function LoginController($scope, $location, $http) {
   $scope.email = "";
   $scope.password = "";
   $scope.errorMsg = "";
-  $scope.checkTokenAndRedirect=function () {
+  $scope.loading = "";
+
+  $scope.checkTokenAndRedirect = function () {
     if (localStorage.getItem("user")) {
       window.location.href = "/tasks";
     }
@@ -36,21 +38,23 @@ function LoginController($scope, $location, $http) {
         password: $scope.password,
         email: $scope.email,
       };
-      console.log(data);
-      console.log("before");
       sendDataToServer(data);
     }
   };
 
   async function sendDataToServer(data) {
     try {
+      $scope.loading = "Logging in... pLease wait"
       const response = await $http.post("http://localhost:3001/login", data);
       $scope.errorMsg = "";
       console.log(response);
       localStorage.setItem("user", response.data.userId);
       window.location.href = "/tasks";
     } catch (error) {
-      $scope.errorMsg = error.data.message;
+      $scope.$apply(() => {
+        $scope.errorMsg = error.data.message;
+        $scope.loading = "";
+      });
     }
   }
 

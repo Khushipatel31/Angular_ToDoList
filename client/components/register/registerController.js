@@ -3,25 +3,26 @@ function RegisterController($scope, $location, $http) {
     $scope.password = "";
     $scope.email = "";
     $scope.errorMsg = "";
+    $scope.loading = "";
 
     $scope.validateForm = function () {
-        $scope.errorMsg = ""; 
+        $scope.errorMsg = "";
 
         if (!$scope.username || $scope.username.length < 5) {
             $scope.errorMsg = "Username must be at least 5 characters long.";
-            return false; 
+            return false;
         }
 
         if (!$scope.password || $scope.password.length < 8) {
             $scope.errorMsg = "Password must be at least 8 characters long.";
-            return false; 
+            return false;
         }
 
         if (!$scope.email || !isValidEmail($scope.email)) {
             $scope.errorMsg = "Invalid email format.";
-            return false; 
+            return false;
         }
-        return true; 
+        return true;
     };
 
     function isValidEmail(email) {
@@ -31,13 +32,25 @@ function RegisterController($scope, $location, $http) {
 
     async function sendDataToServer(data) {
         try {
+            $scope.loading = "Registering... pLease wait";
             const response = await $http.post('http://localhost:3001/register', data);
-            console.log("Success:", response.data);
-            $scope.errorMsg = "";
-            $location.path('/login');
+            if (response.data.success == "false") {
+                $scope.$apply(() => {
+                    $scope.errorMsg = response.data.message;
+
+                });
+            } else {
+                $scope.errorMsg = "";
+                $scope.loading = "";
+                $location.path('/login');
+            }
         } catch (error) {
             console.log("Error:", error.data.message);
-            $scope.errorMsg = error.data.message;
+            $scope.$apply(() => {
+                $scope.errorMsg = error.data.message;
+                $scope.loading = "";
+
+            });
         }
     }
 

@@ -4,7 +4,7 @@ import loginCtrl from './components/login/loginController';
 import registerCtrl from './components/register/registerController';
 import dashboardCtrl from './components/dashboard/dashboardController';
 
-const app = angular.module('abc', ["ngRoute"]);
+const app = angular.module('ToDoList', ["ngRoute"]);
 app.config(config);
 
 config.$inject = ["$routeProvider", "$locationProvider","$httpProvider","$filterProvider"];

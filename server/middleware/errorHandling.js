@@ -19,7 +19,7 @@ function errorHandler(err, req, res, next) {
     res.status(err.httpStatusCode).json({
         success: false,
         message: err.message,
-        error: err,//if we write err.stack we can get to know location from where error occurred
+        error: err,
     })
 }
 

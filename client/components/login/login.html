@@ -1,48 +1,26 @@
-<div
-  class="w-full h-screen flex items-center justify-center bg-[#dff6ff]"
->
-  <div
-    class="tab-content w-full active max-w-md mx-auto p-8 bg-[#0f172a] rounded-lg shadow-lg shadow-black"
-  >
-    <h2 class="text-2xl font-bold mb-4 text-[#34aae0] text-center">Login</h2>
+<div class="w-full h-screen flex items-center justify-center  bg-[#0f172a]">
+  <div class="tab-content w-full active max-w-md mx-auto p-8 bg-[#34a9e0]  rounded-lg shadow-lg shadow-black">
+    <h2 class="text-2xl font-bold mb-4 text-[#0f172a] text-center">Login</h2>
     <form ng-submit="login()" class="space-y-4">
       <div>
-        <label for="email" class="block font-medium text-[#34aae0] py-1 ">Email :</label>
-        <input
-          ng-model="email"
-          type="text"
-          id="email"
-          name="email"
+        <label for="email" class="block font-medium text-[#0f172a] py-1 ">Email :</label>
+        <input ng-model="email" type="text" id="email" name="email"
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1e8fc3]"
-          required
-        />
+          required />
       </div>
       <div>
-        <label for="password" class="block font-medium text-[#34aae0] py-1">Password :</label>
-        <input
-        ng-model="password"
-          type="password"
-          id="password"
-          name="password"
+        <label for="password" class="block font-medium text-[#0f172a] py-1">Password :</label>
+        <input ng-model="password" type="password" id="password" name="password"
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1e8fc3]"
-          required
-        />
+          required />
       </div>
-      <input
-        type="submit"
-        value="Login"
-        class="w-full bg-[#34aae0]  text-white font-semibold py-2 rounded-lg hover:bg-[#1e8fc3] my-6"
-      />
+      <input type="submit" value="Login"
+        class="w-full bg-[#0f172a]  text-white font-semibold py-2 rounded-lg hover:bg-[#0f172ab3] my-6" />
     </form>
-    <p class="mt-4 text-[#34aae0]">
+    <p class="mt-4 text-[#0f172a]">
       Don't have an account?
-      <a
-        href="#"
-        ng-click="toSignup()"
-        class="text-red-300 font-medium hover:underline"
-        >Register here</a
-      >
+      <a href="#" ng-click="toSignup()" class="text-[#0f172a] font-medium hover:underline">Register here</a>
     </p>
-    <p class="text-red-500">{{errorMsg}}</p>
+    <p class="text-red-600 text-center text-bold">{{errorMsg}}</p>
   </div>
 </div>

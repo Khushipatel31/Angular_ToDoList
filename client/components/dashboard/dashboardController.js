@@ -23,6 +23,7 @@ function DashboardController($scope, $location,$http,$filter) {
                     (task) => task.status === true
                 );
                 $scope.message = response.data.message;
+                $scope.newTask="";
             });
         } catch (error) {
             $scope.errorMsg = error.data.message;
@@ -39,16 +40,21 @@ function DashboardController($scope, $location,$http,$filter) {
 
     $scope.closeModal = function () {
         document.getElementById("editTaskModal").style.display = "none"; 
+        $scope.errorMsg="";
     };
 
     $scope.saveEditedTask = function () {
+        if (!$scope.taskk || typeof $scope.taskk !== 'string' || !$scope.taskk.trim() || !localStorage.getItem("user")) {
+            $scope.errorMsg = "Please enter properly";
+            return;
+        }
         $scope.editTask.task = $scope.taskk;
         $scope.toggleEdit($scope.editTask);
         $scope.closeModal();
     };
 
     $scope.addTask = function () {
-        if (!$scope.newTask.trim() || !localStorage.getItem("user")) {
+        if (!$scope.newTask || typeof $scope.newTask !== 'string' || !$scope.newTask.trim() || !localStorage.getItem("user")) {
             $scope.errorMsg = "Please enter properly";
             return;
         }
