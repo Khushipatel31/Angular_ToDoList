@@ -32,7 +32,7 @@ function RegisterController($scope, $location, $http) {
 
     async function sendDataToServer(data) {
         try {
-            $scope.loading = "Registering... pLease wait";
+            $scope.loading = "Registering... Please wait";
             const response = await $http.post('http://localhost:3001/register', data);
             if (response.data.success == "false") {
                 $scope.$apply(() => {
