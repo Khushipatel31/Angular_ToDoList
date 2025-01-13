@@ -27,7 +27,6 @@ function config($routeProvider, $locationProvider, $httpProvider, $filterProvide
             controller: 'DashboardController',
         })
 };
-console.log("hi")
 app.controller('LoginController', loginCtrl);
 app.controller('RegisterController', registerCtrl);
 app.controller('DashboardController', dashboardCtrl);
